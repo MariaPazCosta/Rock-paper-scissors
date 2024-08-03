@@ -10,11 +10,11 @@ function generateComputerChoice(){
 // 1 es piedra, 2 es papel y 3 es tijeras
 function showChoice(choice, player){
     if(choice==1){
-        console.log(player + " has chosen rock")
+        alert(player + " has chosen rock")
     }else if(choice==2){
-        console.log(player + " has chosen paper")
+        alert(player + " has chosen paper")
     }else{
-        console.log(player +" has chosen scissors")
+        alert(player +" has chosen scissors")
     }
 }
 
@@ -27,8 +27,9 @@ function playGame(){
     let humanScore = 0
     let computerScore = 0
     
-    for(i=0; i< 5; i++){
-        let humanChoice= prompt("Choose between: 1: rock , 2: paper 3: scissors");
+    for(i=1; i< 6; i++){
+        alert("Round: " + i)
+        let humanChoice= prompt("Choose between: 1: rock  2: paper  3: scissors");
         let compChoice= generateComputerChoice()
         
         showChoice(compChoice, "Computer")
@@ -38,34 +39,34 @@ function playGame(){
     
     function playRound (humanChoice, compChoice){
         if(humanChoice == 1 && compChoice == 3){
-            console.log("Human wins this round!")
+            alert(playerName +" wins this round!")
             humanScore+=10
         }else if(humanChoice == 2 && compChoice == 1){
-            console.log("Human wins this round!")
+            alert(playerName+" wins this round!")
             humanScore+=10
         }else if(humanChoice==3 && compChoice == 2){
-            console.log("Human wins this round!")
+            alert(playerName + " wins this round!")
             humanScore+=10
         }else if (compChoice == humanChoice){
-            console.log("It is a tie!")
+            alert("It is a tie!")
             
         }else{
-            console.log("Computer wins")
+            alert("Computer wins")
             computerScore+=10
         }
             
     }
 
     if(humanScore > computerScore){
-        console.log(playerName+ "Is the winner")
+        alert(playerName+ " Is the winner")
         console.log(playerName+ " score is: "+humanScore)
         console.log("Computer score is: " + computerScore)
     }else if (humanScore == computerScore){
-        console.log("It is a tie!")
+        alert("It is a tie!")
         console.log(playerName+ " score is: "+humanScore)
         console.log("Computer score is: " + computerScore)
     }else{
-        console.log( "The computer is the winner")
+        alert( "The computer is the winner")
         console.log(playerName+ " score is: "+humanScore)
         console.log("Computer score is: " + computerScore)
     }
