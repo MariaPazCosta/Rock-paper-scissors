@@ -1,5 +1,6 @@
 
 
+
 function generateComputerChoice(){
     let max = 4
     let min = 1
@@ -7,69 +8,58 @@ function generateComputerChoice(){
     return option
 }
 
-// 1 es piedra, 2 es papel y 3 es tijeras
-function showChoice(choice, player){
-    if(choice==1){
-        alert(player + " has chosen rock")
-    }else if(choice==2){
-        alert(player + " has chosen paper")
-    }else{
-        alert(player +" has chosen scissors")
-    }
-}
 
+function getPlayerChoice(){
+     
+    let comScore = 0
+    let playerScore = 0
+    const butt = document.querySelector("#buttons")
+    for (let i = 0 ; i>5; i++){
 
-let playerName= prompt("Enter your name")
-
-
-
-function playGame(){
-    let humanScore = 0
-    let computerScore = 0
-    
-    for(i=1; i< 6; i++){
-        alert("Round: " + i)
-        let humanChoice= prompt("Choose between: 1: rock  2: paper  3: scissors");
-        let compChoice= generateComputerChoice()
+     butt.addEventListener("click", (event)=>{
+         let target = event.target
+         let id = target.id
         
-        showChoice(compChoice, "Computer")
-        showChoice(humanChoice, playerName)
-        playRound(humanChoice,compChoice)
-    }
-    
-    function playRound (humanChoice, compChoice){
-        if(humanChoice == 1 && compChoice == 3){
-            alert(playerName +" wins this round!")
-            humanScore+=10
-        }else if(humanChoice == 2 && compChoice == 1){
-            alert(playerName+" wins this round!")
-            humanScore+=10
-        }else if(humanChoice==3 && compChoice == 2){
-            alert(playerName + " wins this round!")
-            humanScore+=10
-        }else if (compChoice == humanChoice){
-            alert("It is a tie!")
-            
-        }else{
-            alert("Computer wins")
-            computerScore+=10
+        switch(id){
+            case "rock":
+                playRound(1)
+                break
+            case "paper":
+                playRound(2)
+                break
+            case "scissors":
+                playRound(3)
+                break
         }
-            
-    }
+        
+    })}
+ }
 
-    if(humanScore > computerScore){
-        alert(playerName+ " Is the winner")
-        console.log(playerName+ " score is: "+humanScore)
-        console.log("Computer score is: " + computerScore)
-    }else if (humanScore == computerScore){
-        alert("It is a tie!")
-        console.log(playerName+ " score is: "+humanScore)
-        console.log("Computer score is: " + computerScore)
+function playRound (humanChoice){
+    
+    
+    compChoice = generateComputerChoice()
+    console.log("computer choice " +compChoice)
+    console.log("human choice " + humanChoice)
+    
+    let scoreText = document.querySelector("p")
+     
+     if(humanChoice == 1 && compChoice == 3){
+         scoreText.textContent="YOU WIN!"
+        
+     }else if(humanChoice == 2 && compChoice == 1){
+         scoreText.textContent="YOU WIN!"
+     
+    }else if(humanChoice==3 && compChoice == 2){
+         scoreText.textContent="YOU WIN!"
+      
+     }else if (compChoice == humanChoice){
+        scoreText.textContent="Its a tie!"
+        
     }else{
-        alert( "The computer is the winner")
-        console.log(playerName+ " score is: "+humanScore)
-        console.log("Computer score is: " + computerScore)
+         scoreText.textContent="Computer wins"
+     
     }
 }
 
-playGame()
+getPlayerChoice()
