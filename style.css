@@ -1,11 +1,42 @@
+@font-face {
+    font-family: "Mustard";
+    src: url("./fonts/Mustard\ Medium.otf");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Mustard bold";
+    src: url("./fonts/Mustard\ Bold.otf.otf");
+    font-style: normal;
+    
+}
+
 body{
+    padding: 40px 300px;
+    background: rgb(238,174,202);
+    background: linear-gradient(304deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;  /* Asegura que el body cubra toda la altura del viewport */
+    margin: 0
+   
+    
+}
+
+.card{
     display: flex;
     flex-direction: column;
     gap: 20px;
     text-align: center;
     padding: 40px 10px;
-    font-family: "Lucida Console", "Courier New", monospace;
-    
+
+    background: rgb(249, 246, 250);
+    border-radius: 10px;
+
+    font-family: "Mustard","Mustard bold";
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
 .score{
     display: flex;
@@ -55,8 +86,8 @@ p{
 }
 
 #game-text{
-    font-size: 40px;
-    color: rgb(240, 110, 136);
+    font-size: 30px;
+    color: rgb(250, 227, 232);
 }
 
 h2,h1{

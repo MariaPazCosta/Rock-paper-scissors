@@ -80,7 +80,7 @@ function determineWinner() {
     resetBtt.setAttribute("id","reset")
     resetBtt.textContent="PLAY AGAIN!"
 
-    let body = document.querySelector("body")
+    let card = document.querySelector(".card")
 
     if (comScore > playerScore) {
         gameText.textContent = "Computer wins!";
@@ -92,7 +92,7 @@ function determineWinner() {
 
     scoreText.textContent = `Final Score - Computer: ${comScore} Player: ${playerScore}`;
     
-    body.appendChild(resetBtt)
+    card.appendChild(resetBtt)
     resetBtt.addEventListener("click", ()=>{
             location.reload();
     })
