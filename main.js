@@ -1,6 +1,8 @@
 
 let playerScore = 0
 let comScore = 0
+let currentRound = 0;
+const maxRounds = 5;
 
 function generateComputerChoice(){
     let max = 4
@@ -35,55 +37,89 @@ function getPlayerChoice(){
 
  }
 
- function playRound (humanChoice){
-    
-    
-    compChoice = generateComputerChoice()
-    console.log("computer choice " +compChoice)
-    console.log("human choice " + humanChoice)
-    
-    let gameText = document.querySelector("#game-text")
-     
-     if(humanChoice == 1 && compChoice == 3){
-         gameText.textContent="YOU WIN!"
-         playerScore += 1 
+ function playRound(humanChoice) {
+    compChoice = generateComputerChoice();
+    console.log("computer choice: " + compChoice);
+    console.log("human choice: " + humanChoice);
+
+    let gameText = document.querySelector("#game-text");
+
+    if (humanChoice == 1 && compChoice == 3 ||
+        humanChoice == 2 && compChoice == 1 ||
+        humanChoice == 3 && compChoice == 2) {
         
-     }else if(humanChoice == 2 && compChoice == 1){
-         gameText.textContent="YOU WIN!"
-         playerScore += 1 
-     
-    }else if(humanChoice==3 && compChoice == 2){
-         gameText.textContent="YOU WIN!"
-         playerScore += 1 
-      
-     }else if (compChoice == humanChoice){
-        gameText.textContent="Its a tie!"
-        
-        
-    }else{
-         gameText.textContent="Computer wins"
-         comScore += 1
-     
+        gameText.textContent = "YOU WIN!";
+        playerScore += 10;
+    } else if (compChoice == humanChoice) {
+        gameText.textContent = "It's a tie!";
+    } else {
+        gameText.textContent = "Computer wins";
+        comScore += 10;
     }
-    let scoreText = document.querySelector("#score-text")
-    scoreText.textContent=`Computer: ${comScore}`+ " " +` Player: ${playerScore}`
+
+    // Avanzar a la siguiente ronda
+    currentRound++;
+    if (currentRound < maxRounds) {
+        updateRoundDisplay();
+    } else {
+        determineWinner();
+        
+    }
 }
 
-getPlayerChoice()
+function updateRoundDisplay() {
+    let rounds = document.querySelector("#round");
+    rounds.textContent = "Round: " + (currentRound + 1);
+}
+
+function determineWinner() {
+    let scoreText = document.querySelector("#score-text");
+    let gameText = document.querySelector("#game-text");
+    
+    let resetBtt = document.createElement("button")
+    resetBtt.setAttribute("id","reset")
+    resetBtt.textContent="PLAY AGAIN!"
+
+    let body = document.querySelector("body")
+
+    if (comScore > playerScore) {
+        gameText.textContent = "Computer wins!";
+    } else if (comScore == playerScore) {
+        gameText.textContent = "It's an overall tie!";
+    } else {
+        gameText.textContent = "Player wins!";
+    }
+
+    scoreText.textContent = `Final Score - Computer: ${comScore} Player: ${playerScore}`;
+    
+    body.appendChild(resetBtt)
+    resetBtt.addEventListener("click", ()=>{
+            location.reload();
+    })
+    
+    
+    
+}
+
+// function reset(){
+//     let sText = document.querySelector("#score-text");
+//     let gText = document.querySelector("#game-text");
+//     let r = document.querySelector("#round");
+//     sText.textContent=""
+//     gText.textContent=""
+//     r.textContent="Round:"
+//     currentRound = 0;
+//     playerScore = 0;
+//     comScore = 0;
+// }
 
 
-// let p = document.querySelector("p")
-//     if (comScore > playerScore){
-//         p.textContent= "You lose"
-//         p.textContent= `Player Score:  ${playerScore}
-//                         Computer Score ${comScore}`
-//     }else if(comScore == playerScore){
-        
-//         p.textContent= "Its a tie!"
-//         p.textContent= `Player Score:  ${playerScore}
-//                         Computer Score ${comScore}`
-//     }else{
-//         p.textContent= "YOU WIN!"
-//         p.textContent= `Player Score:  ${playerScore}
-//                         Computer Score ${comScore}`
-//     }
+function playGame() {
+    currentRound = 0;
+    playerScore = 0;
+    comScore = 0;
+    updateRoundDisplay();
+    getPlayerChoice();
+}
+
+playGame();
