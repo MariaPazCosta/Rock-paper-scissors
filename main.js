@@ -73,15 +73,19 @@ function updateRoundDisplay() {
 }
 
 function determineWinner() {
+    //seleccion de los p pare mostrar el texto de los ganadores
     let scoreText = document.querySelector("#score-text");
     let gameText = document.querySelector("#game-text");
+    let buttons= document.querySelector("#buttons")
     
+    //creación del boton para resetear
     let resetBtt = document.createElement("button")
     resetBtt.setAttribute("id","reset")
     resetBtt.textContent="PLAY AGAIN!"
 
     let card = document.querySelector(".card")
 
+    //definicion de los ganadores
     if (comScore > playerScore) {
         gameText.textContent = "Computer wins!";
     } else if (comScore == playerScore) {
@@ -92,6 +96,8 @@ function determineWinner() {
 
     scoreText.textContent = `Final Score - Computer: ${comScore} Player: ${playerScore}`;
     
+    //suma el boton para resetear y elimina los otros botones 
+    card.removeChild(buttons)
     card.appendChild(resetBtt)
     resetBtt.addEventListener("click", ()=>{
             location.reload();
@@ -101,17 +107,7 @@ function determineWinner() {
     
 }
 
-// function reset(){
-//     let sText = document.querySelector("#score-text");
-//     let gText = document.querySelector("#game-text");
-//     let r = document.querySelector("#round");
-//     sText.textContent=""
-//     gText.textContent=""
-//     r.textContent="Round:"
-//     currentRound = 0;
-//     playerScore = 0;
-//     comScore = 0;
-// }
+
 
 
 function playGame() {
