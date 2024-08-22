@@ -14,7 +14,7 @@
 }
 
 body{
-    padding: 40px 300px;
+    padding: 40px ;
     background: rgb(238,174,202);
     background: linear-gradient(304deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
     background-repeat: no-repeat;
@@ -30,7 +30,9 @@ body{
     flex-direction: column;
     gap: 20px;
     text-align: center;
-    padding: 40px 10px;
+    padding: 40px 50px;
+
+    flex-basis: 600px;
 
     background: rgb(249, 246, 250);
     border-radius: 10px;
@@ -47,12 +49,15 @@ body{
 #score-box{
     display: flex;
     flex-direction: column;
+    
     background-color: rgb(29, 29, 29);
-    padding: 5px 15px;
+    padding: 15px 15px;
     border: 3px solid rgb(96, 97, 97);
     border-radius: 5px;
-    min-height: 100px;
-    min-width: 300px;
+    
+    flex-basis: 400px;
+    flex-grow: 0.25;
+    
     justify-content: center;
     align-items: center;
 
